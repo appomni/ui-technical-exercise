@@ -6,6 +6,7 @@
       @addContact="add"
       @updateContact="update"
       @delete="handleDelete"
+      @search-updated="filterContacts"
     />
   </div>
 </template>
@@ -59,6 +60,9 @@ export default {
         this.contacts.splice(contactIndex, 1);
       }
     },
+    filterContacts(searchValue) {
+      this.contacts = this.contacts.filter((contact) => (contact.name).includes(searchValue) || contact.email.includes(searchValue));
+    }
   },
 };
 </script>
