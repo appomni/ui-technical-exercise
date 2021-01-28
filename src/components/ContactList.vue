@@ -7,6 +7,7 @@
       @update="updateContact"
     />
     <button @click="addingOrUpdating = true">New Contact</button>
+    <input type="text" v-model="search" placeholder="search...">
     <ul class="contacts-list">
       <li
         class="contacts-list__item"
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       addingOrUpdating: false,
+      search: '',
       targetContact: {},
     };
   },
@@ -55,6 +57,19 @@ export default {
       }
       this.addingOrUpdating = false;
       this.targetContact = {};
+    },
+  },
+  watch: {
+    search(newVal) {
+      if (newVal) {
+        this.$emit('search-updated', this.search);
+      }
+    },
+    target: {
+      handler(newVal) {
+        console.log(newVal);
+      },
+      deep: true,
     },
   },
 };
