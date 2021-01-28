@@ -12,6 +12,7 @@
 
 <script>
 import ContactList from "./components/ContactList";
+import ContactService from "./services/contact";
 
 export default {
   name: "App",
@@ -20,26 +21,7 @@ export default {
   },
   data() {
     return {
-      contacts: [
-        {
-          id: 1,
-          name: "First Last",
-          email: "test@appomni.com",
-          notes: "lorem ipsum",
-        },
-        {
-          id: 2,
-          name: "Tester McTest",
-          email: "mctest@appomni.com",
-          notes: "lorem ipsum",
-        },
-        {
-          id: 3,
-          name: "John Testingham Jr",
-          email: "johntest@appomni.com",
-          notes: "lorem ipsum",
-        },
-      ],
+      contacts: [],
     };
   },
   methods: {
@@ -60,6 +42,9 @@ export default {
       }
     },
   },
+  mounted() {
+    this.contacts = ContactService.getContacts();
+  }
 };
 </script>
 
