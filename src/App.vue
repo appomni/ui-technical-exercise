@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" width="25%" />
     <contact-list
-      :contacts="contacts"
+      :contacts="filteredContacts"
       @addContact="add"
       @updateContact="update"
       @delete="handleDelete"
@@ -41,6 +41,7 @@ export default {
           notes: "lorem ipsum",
         },
       ],
+      filteredContacts: [],
     };
   },
   methods: {
@@ -61,8 +62,11 @@ export default {
       }
     },
     filterContacts(searchValue) {
-      this.contacts = this.contacts.filter((contact) => (contact.name).includes(searchValue) || contact.email.includes(searchValue));
+      this.filteredContacts = this.contacts.filter((contact) => (contact.name).includes(searchValue) || contact.email.includes(searchValue));
     }
+  },
+  mounted() {
+    this.filteredContacts = this.contacts;
   },
 };
 </script>
