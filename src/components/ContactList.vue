@@ -60,8 +60,10 @@ export default {
     },
   },
   watch: {
-    search() {
-      this.$emit('search-updated', this.search);
+    search(newVal) {
+      if (newVal) {
+        this.$emit('search-updated', this.search);
+      }
     },
     target: {
       handler(newVal) {
