@@ -3,7 +3,6 @@
 - Add Contacts
 - Edit Contacts
 - Delete Contacts
-- Update Contacts
 - Search for Contacts
 
 ## Run locally:
