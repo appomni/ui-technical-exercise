@@ -27,23 +27,23 @@ export default {
   methods: {
     add(contact) {
       contact.id = Math.random().toString(32).substr(2);
-      this.contacts.push(contact);
+      ContactService.createContact(contact);
+      this.getContacts();
     },
-    update(contact) {
-      const contactIndex = this.contacts.findIndex((c) => c.id === contact.id);
-      if (contactIndex > 0) {
-        this.contacts.splice(contactIndex, 1, contact);
-      }
+    getContacts() {
+      this.contacts = ContactService.getContacts();
     },
     handleDelete(contact) {
-      const contactIndex = this.contacts.findIndex((c) => c.id === contact.id);
-      if (contactIndex > 0) {
-        this.contacts.splice(contactIndex, 1);
-      }
+      ContactService.deleteContact(contact);
+      this.getContacts();
+    },
+    update(contact) {
+      ContactService.updateContact(contact); 
+      this.getContacts();
     },
   },
   mounted() {
-    this.contacts = ContactService.getContacts();
+    this.getContacts();
   }
 };
 </script>
